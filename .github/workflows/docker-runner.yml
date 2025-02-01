@@ -17,7 +17,7 @@ jobs:
         run: docker build -t my-app .
 
       - name: Run Docker container
-        run: docker run -d -p 8080:80 --name my-running-app my-app
+        run: docker run -it -d -p 8080:80 --name my-running-app my-app
 
       - name: Check running containers
         run: docker ps
