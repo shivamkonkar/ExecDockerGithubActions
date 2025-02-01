@@ -1,4 +1,9 @@
-FROM ubuntu:latest
-LABEL authors="shivam.konkar"
+FROM python
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app
+
+COPY . .
+
+RUN chmod u+x startup.sh
+
+CMD ["./startup.sh"]
