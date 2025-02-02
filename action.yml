@@ -1,0 +1,17 @@
+name: "Demo Test Engine"
+description: "Runs Selenium test cases from Google Drive and generates a test report."
+author: "Shivam Konkar"
+branding:
+  icon: "check"
+  color: "blue"
+
+inputs:
+  storage_id:
+    description: "Google Drive Storage ID"
+    required: true
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    STORAGE_ID: ${{ inputs.storage_id }}
