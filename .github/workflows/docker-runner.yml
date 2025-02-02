@@ -1,24 +1,7 @@
 name: Build and Run Docker Container
 
-on: push
-
-jobs:
-  build-and-run:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Build Docker Image
-        run: |
-          docker build --build-arg STORAGE_ID=${{ secrets.STORAGE_ID }} -t shivamkonkar/demo-test-engine .
-
-      - name: Run Test Engine
-        uses: shivamkonkar/ExecDockerGithubActions@v3
-        with:
-          storage_id: ${{ secrets.STORAGE_ID }}
-
+on:
+  workflow_dispatch:
 
 jobs:
   build-and-run:
