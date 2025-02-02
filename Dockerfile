@@ -14,6 +14,8 @@ RUN pip install -r requirements.txt
 # Download Google Drive file using a script
 RUN bash -c 'curl -L -o test.json "https://drive.google.com/uc?export=download&id=${STORAGE_ID}"'
 
+RUN cat test.json
+
 
 # Install Google Chrome stable version
 RUN curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
