@@ -1,23 +1,21 @@
-FROM python
+FROM python:3.9  # Specify a stable Python version
+
 WORKDIR /app
 
-# Copy local file
+# Accept secret as a build argument
+ARG STORAGE_ID
+
+# Set the secret as an environment variable inside the container
+ENV STORAGE_ID=${STORAGE_ID}
+
+# Copy local files
 COPY . .
 
-# Install Google Chrome stable version
-# RUN curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-#     && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
-#     && apt-get update && apt-get install -y google-chrome-stable \
-#     && rm -rf /var/lib/apt/lists/*
-
-# Download Google Drive file
-# Curl doesn't follow redirects unless you add the -L option
-# To save the contents of your download to a file, add the `-o' option followed by the filename
-RUN curl -L -o test.json "https://drive.google.com/uc?export=download&id=${STORAGE_ID}"
-
+# Install required dependencies
 RUN pip install -r requirements.txt
 
-RUN pytest app.py --html=report.html --self-contained-html || true
+# Download Google Drive file using a script
+RUN bash -c 'curl -L -o test.json "https://drive.google.com/uc?export=download&id=${STORAGE_ID}"'
 
-
-
+# Define the container's default command (run tests at runtime)
+CMD ["pytest", "app.py", "--html=report.html", "--self-contained-html"]
