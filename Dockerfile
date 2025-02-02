@@ -2,9 +2,6 @@ FROM python
 
 WORKDIR /app
 
-# Accept secret as a build argument
-ARG STORAGE_ID
-
 # Set the secret as an environment variable inside the container
 ENV STORAGE_ID=${STORAGE_ID}
 
