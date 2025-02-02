@@ -1,6 +1,24 @@
 name: Build and Run Docker Container
 
-on: push  # Runs on every push
+on: workflow_dispatch:  # This enables manual triggering from GitHub UI
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build Docker Image
+        run: |
+          docker build --build-arg STORAGE_ID=${{ secrets.STORAGE_ID }} -t shivamkonkar/demo-test-engine .
+
+      - name: Run Test Engine
+        uses: shivamkonkar/ExecDockerGithubActions@v3
+        with:
+          storage_id: ${{ secrets.STORAGE_ID }}
+
 
 jobs:
   build-and-run:
