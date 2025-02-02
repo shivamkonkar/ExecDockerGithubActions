@@ -1,6 +1,6 @@
 name: Build and Run Docker Container
 
-on: workflow_dispatch:  # This enables manual triggering from GitHub UI
+on: push
 
 jobs:
   build-and-run:
