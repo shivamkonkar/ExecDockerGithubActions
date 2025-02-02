@@ -2,10 +2,9 @@ FROM python
 
 WORKDIR /app
 
-ARG STORAGE_ID
-
 # Set the secret as an environment variable inside the container
 ENV STORAGE_ID=${STORAGE_ID}
+
 
 # Copy local files
 COPY . .
