@@ -17,4 +17,4 @@ RUN curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-ke
     && apt-get update && apt-get install -y google-chrome-stable \
     && rm -rf /var/lib/apt/lists/*
 
-CMD curl -L -o test.json "${STORAGE_ID}" && pytest app.py --html=report.html --self-contained-html || true
+CMD curl -L -o test.json "${STORAGE_ID}" && cat test.json && pytest app.py --html=report.html --self-contained-html || true
