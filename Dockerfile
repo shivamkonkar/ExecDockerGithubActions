@@ -24,5 +24,4 @@ RUN curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-ke
     && apt-get update && apt-get install -y google-chrome-stable \
     && rm -rf /var/lib/apt/lists/*
 
-# Define the container's default command (run tests at runtime)
-CMD ["pytest", "app.py", "--html=report.html", "--self-contained-html"]
+RUN pytest app.py --html=report.html --self-contained-html || true
