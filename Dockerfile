@@ -1,4 +1,4 @@
-FROM python:3.9  # Specify a stable Python version
+FROM python
 
 WORKDIR /app
 
