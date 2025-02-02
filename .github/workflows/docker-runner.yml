@@ -10,14 +10,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: Build Docker Image
-        run: docker build --build-arg STORAGE_ID=${{ secrets.STORAGE_ID }} -t my-app .
-
-      - name: Run Docker Container
-        run: docker run -e STORAGE_ID=${{ secrets.STORAGE_ID }} -d --name my-running-app my-app
-
-      - name: Show Container Logs
-        run: docker logs my-running-app
+      - name: Run Test Engine
+        uses: your-github-username/demo-test-engine@v1
+        with:
+          storage_id: ${{ secrets.STORAGE_ID }}
