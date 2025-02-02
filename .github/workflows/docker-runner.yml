@@ -10,8 +10,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        
+      - name: Print Repository Variable
+        run: echo "The value of TEST_VARIABLE is ${{ vars.TEST_VARIABLE }}"
 
       - name: Run Test Engine
         uses: shivamkonkar/ExecDockerGithubActions@v4
         with:
-          storage_id: ${{ secrets.STORAGE_ID }}
+          storage_id: ${{ vars.TEST_VARIABLE }}
