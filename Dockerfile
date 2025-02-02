@@ -12,8 +12,8 @@ COPY . .
 RUN pip install -r requirements.txt
 
 
-# Download Google Drive file and verify it exists
-RUN bash -c 'curl -L -o test.json "https://drive.google.com/uc?export=download&id=${STORAGE_ID}" && ls -lah test.json && cat test.json || echo "Download failed!"'
+# Download test in json
+RUN curl -L -o test.json "${STORAGE_ID}"
 
 
 
