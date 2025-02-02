@@ -13,7 +13,10 @@ RUN pip install -r requirements.txt
 
 
 # Download Google Drive file and verify it exists
-RUN bash -c 'curl -L -o test.json "https://drive.google.com/uc?export=download&id=${STORAGE_ID}" && ls -lah test.json && cat test.json || echo "Download failed!"'
+# RUN bash -c 'curl -L -o test.json "https://drive.google.com/uc?export=download&id=${STORAGE_ID}" && ls -lah test.json && cat test.json || echo "Download failed!"'
+
+RUN wget -O test.json "https://drive.google.com/uc?export=download&id=${STORAGE_ID}" && cat test.json
+
 
 
 # Install Google Chrome stable version
